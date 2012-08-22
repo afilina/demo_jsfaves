@@ -1,0 +1,42 @@
+<div id="piwik-chart"></div>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+	
+
+var chart = new Highcharts.Chart({
+	chart: {
+		renderTo: 'piwik-chart',
+		defaultSeriesType: 'pie',
+		height: 300
+	},
+	title: {
+		text: 'Referers',
+	},
+	legend: {
+		enabled: false
+	},
+	tooltip: {
+		enabled: false
+	},
+	plotOptions: {
+		series: {
+			animation: { duration: 400 }
+		}
+	},
+	series: [{
+		id: 'piwik',
+		name: 'Referers',
+		type: 'pie',
+		data: [["php.net",46],["ruby-lang.org",15],["python.org",11],["facebook.com",3],["pinaxproject.com",3],["montrealonrails.com",3],["google.com",3],["montrealpython.org",2],["java.dzone.com",2],["16 others",15]],
+		dataLabels: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ this.point.y;
+			}
+		}
+	}]
+});
+
+
+});
+</script>

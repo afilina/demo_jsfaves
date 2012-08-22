@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Javascript Faves</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.13.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.13.custom.css"/>
+
+<style type="text/css" media="screen">
+	table {
+		border-spacing: 0;
+	}
+	td {
+		background: rgba(235, 143, 0, 0.6);
+		padding: 3px 8px;
+	}
+	tr.even td {
+		background: rgba(235, 143, 0, 0.3);
+	}
+	#tabs-3 span, #tabs-3 button {
+		display: block;
+	}
+	#tabs-3 input {
+		width: 500px;
+	}
+	#tabs-3 textarea {
+		width: 500px;
+		height: 180px;
+	}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$('#tabs').tabs();
+	});
+</script>
+
+</head>
+<body>
+	
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Open Tickets</a></li>
+			<li><a href="#tabs-2">Closed Tickets</a></li>
+			<li><a href="#tabs-3">New</a></li>
+		</ul>
+		<div id="tabs-1">
+			<table>
+				<tr>
+					<th>Ticket</th>
+					<th>Summary</th>
+					<th>Assigned</th>
+				</tr>
+				<tr class="even">
+					<td>8205</td>
+					<td>JSONP random result is causing memory leak in IE8</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>9347</td>
+					<td>$.load don't inherit from $.ajax</td>
+					<td>-</td>
+				</tr>
+				<tr class="even">
+					<td>9091</td>
+					<td>isPlainObject and Firefox 4: can't convert undefined to object</td>
+					<td>afilina</td>
+				</tr>
+			</table>
+		</div>
+		<div id="tabs-2">
+			<table>
+				<tr>
+					<th>Ticket</th>
+					<th>Summary</th>
+				</tr>
+				<tr class="even">
+					<td>6115</td>
+					<td>Css width/height issue in Google Chrome</td>
+				</tr>
+			</table>
+		</div>
+		<div id="tabs-3">
+			<span>Summary:</span><input />
+			<span>Description:</span><textarea></textarea>
+			<button>Open Ticket</button>
+		</div>
+	</div>
+		
+</body>	
+</html>

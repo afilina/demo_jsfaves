@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Javascript Faves</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="js/raphael.min.js"></script>
+
+<style type="text/css" media="screen">
+	#canvas {
+		position: absolute;
+		top: 100px;
+		left: 100px;
+	}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+
+	var stores = [
+		{ name: 'Restaurant',
+		  path: 'M 1 1 L 216 1 L 216 72 L 99 72 L 99 216 L 1 216 L 1 1'
+		},
+		{ name: 'Books',
+		  path: 'M 216 1 L 270 1 L 270 126 L 216 126 L 216 7 L 216 1'
+		},
+		{ name: 'Hardware',
+		  path: 'M 270 1 L 277 1 L 342 1 L 342 126 L 270 126 L 270 7 L 270 1'
+		},
+		{ name: 'Electronics',
+		  path: 'M 99 216 L 99 209 L 99 72 L 216 72 L 216 216 L 106 216 L 99 216'
+		},
+		{ name: 'Pet Food',
+		  path: 'M 216 216 L 216 126 L 288 126 L 288 216 L 216 216'
+		},
+		{ name: 'Camera Repair',
+		  path: 'M 288 216 L 288 126 L 342 126 L 342 216 L 288 216'
+		}
+	];
+	
+	var labels = [], drawings = [], paper;
+
+	$(function() {
+		paper = Raphael("canvas", 600, 400);
+
+		for (var i=0, l=stores.length; i<l; i++) {
+			var store = stores[i];
+			// Store label
+			var t = paper.text(370, i*25+10, store.name);
+			t.attr({
+				'text-anchor': 'start',
+				'font-size':   '18pt',
+				'fill':        '#999',
+				'cursor':      'pointer'
+			});
+			// Store drawing
+			var p = paper.path(store.path);
+			p.attr({
+				'fill':        '#FDF5CE',
+				'stroke':      '#666',
+				'stroke-width': 2,
+				'cursor':       'pointer'
+			});
+			p.storeName = store.name;
+			p.i = t.i = i;
+			t.mouseover(function() {
+				selectStore(this.i);
+			});
+			t.mouseout(function() {
+				deselectStore(this.i);
+			});
+			p.mouseover(function() {
+				selectStore(this.i);
+			});
+			p.mouseout(function() {
+				deselectStore(this.i);
+			});
+			labels[i] = t;
+			drawings[i] = p;
+		};
+	});
+	
+	function selectStore(i) {
+		var t = labels[i];
+		var p = drawings[i];
+		t.attr({
+			'fill': '#000'
+		});
+		p.animate({
+			'fill': '#EB8F00'
+		}, 300, "<>");
+	}
+	
+	function deselectStore(i) {
+		var t = labels[i];
+		var p = drawings[i];
+		t.attr({
+			'fill': '#999'
+		});
+		p.animate({
+			'fill': '#FDF5CE'
+		}, 300, "<>");
+	}
+</script>
+
+</head>
+<body>
+	
+	<div id="canvas"></div>
+		
+</body>	
+</html>

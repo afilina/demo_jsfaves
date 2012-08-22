@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Javascript Faves</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.cycle.all.min.js"></script>
+
+<style type="text/css" media="screen">
+	#cycle-nav {
+		position: absolute;
+		left: 20px;
+		top: 400px;
+		z-index: 99;
+	}
+	#cycle-nav a {
+		text-indent: -9999px;
+		background: url(img/cycle-nav.png) top left;
+		width: 12px; height: 12px;
+		display: block;
+		float: left;
+		margin-right: 4px;
+	}
+	#cycle-nav a.activeSlide {
+		background: url(img/cycle-nav.png) top right;
+	}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$('#cycle').cycle({ 
+ 			fx:     'scrollLeft', 
+			speed:  'fast', 
+			timeout: 3000, 
+			pager:  '#cycle-nav'
+		});
+	});
+</script>
+
+</head>
+<body>
+
+	<div id="cycle">
+		<img src="img/cycle1.jpg" />
+		<img src="img/cycle2.jpg" />
+		<img src="img/cycle3.jpg" />
+	</div>
+	<div id="cycle-nav">
+	</div>
+		
+</body>	
+</html>

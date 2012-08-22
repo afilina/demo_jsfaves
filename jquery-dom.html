@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Javascript Faves</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+
+<style type="text/css" media="screen">
+	div.rating {
+		width: 175px;
+		margin: 200px auto;
+	}
+	div.rating div.bar {
+		height: 12px;
+		width: 120px;
+		float: left;
+		margin: 6px 2px;
+	}
+	div.rating div.bar span.plus,
+	div.rating div.bar span.minus,
+	div.rating div.bar span.neutral {
+		display: block;
+		float: left;
+		height: 12px;
+		background: url(img/vote.png) repeat-x;
+	}
+	div.rating div.bar span.plus {
+		background-position: 0px -60px;
+	}
+	div.rating div.bar span.minus {
+		background-position: 0px -48px;
+	}
+	div.rating div.bar span.neutral {
+		width: 100%;
+		background-position: 0px -72px;
+	}
+	div.rating div.votes {
+		text-align: center;
+		padding-top: 16px;
+	}
+	div.rating a.btnVote {
+		display: block;
+		text-indent: -9999em;
+		width: 24px;
+		height: 24px;
+		background: url(img/vote.png);
+		float: left;
+		position: relative;
+	}
+	div.rating a.btnVote.up {
+		background-position: -24px 0px;
+	}
+	div.rating a.btnVote.down {
+		background-position: 0px 0px;
+	}
+	div.rating a.btnVote.up:hover {
+		background-position: -24px -24px;
+	}
+	div.rating a.btnVote.down:hover {
+		background-position: 0px -24px;
+	}
+	span.fly-status {
+		position: absolute;
+		font-size: 14pt;
+		font-weight: bold;
+	}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+
+var counters = { '+1': 0, '-1': 0 };
+
+/**
+ * Extend jQuery to create your own utility functions and plugins.
+ */
+$.fn.flyStatus = function(text) {
+	return this.each(function(i, element) {
+		var $btn = $(element),
+		    $text = $('<span class="fly-status">'+text+'</span>');
+		
+		$text.css({
+			'top': $btn.offset().top - 10,
+			'left': $btn.offset().left + 10
+		}).animate({
+			'top': '-=30',
+			'opacity': 0
+		}, 600, 'linear', function() {
+			$text.remove();
+		});
+		
+		$('body').append($text);
+	});
+}
+
+$.fn.renderRating = function(plus, minus) {
+	return this.each(function(i, element) {
+		var votes = plus+minus;
+		$('.minus', element).css({
+			'width': Math.ceil(minus/votes*100)+'%'
+		});
+		$('.plus', element).css({
+			'width': Math.floor(plus/votes*100)+'%'
+		});
+		$('.neutral', element).remove();
+		$('.votes .value', element).html(votes);
+	});
+}
+
+/**
+ * Attach event listeners when the DOM is ready.
+ */
+$(function(){
+		// Select buttons within the rating div
+		$('div.rating a.btnVote').click(function() {
+			var $btn    = $(this),
+			    value   = $btn.html(),
+			    $rating = $btn.closest('div.rating');
+			counters[value]++;
+			$btn.flyStatus(value);
+			$rating.renderRating(counters['+1'], counters['-1']);
+			return false;
+		});
+});
+</script>
+
+</head>
+<body>
+	
+	<div class="rating">
+		<a class="btnVote down" href="#" title="Vote down">-1</a>
+		<div class="bar">
+			<span class="minus" style="width:0"></span>
+			<span class="neutral"></span>
+			<span class="plus" style="width:0"></span>
+		</div>
+		<a class="btnVote up" href="#" title="Vote up">+1</a>
+		<div class="votes"><span class="value">0</span> vote(s)</div>
+	</div>
+		
+</body>	
+</html>

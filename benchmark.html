@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Javascript Faves</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/benchmark.js"></script>
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$("table.sortable").tablesorter();
+		
+		var suite = new Benchmark.Suite;
+		suite.add('tablesort#sort', function() {
+		  $("#tablesort thead th:first").click();
+		});
+		suite.on('cycle', function(event, bench) {
+		  console.log(String(bench));
+		});
+		suite.run({
+			'async': false,
+			'minSamples': 30,
+			'maxTime': 10
+		});
+	});
+</script>
+
+</head>
+<body>
+	
+	<table id="tablesort" class="sortable">
+		<thead>
+			<tr>
+				<th>Country (airport)</th>
+				<th>Speakers</th>
+				<th class="{sorter:'currency'}">Estimated fare</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>Afghanistan (RDU)</td>
+				<td>2</td>
+				<td>$483</td>
+			</tr>
+			<tr>
+				<td>Australia (SYD)</td>
+				<td>1</td>
+				<td>$3015</td>
+			</tr>
+			<tr>
+				<td>Belgium (BRU)</td>
+				<td>9</td>
+				<td>$835</td>
+			</tr>
+			<tr>
+				<td>Brazil (GRU)</td>
+				<td>3</td>
+				<td>$1060</td>
+			</tr>
+			<tr>
+				<td>Cameroon (NSI)</td>
+				<td>1</td>
+				<td>$1746</td>
+			</tr>
+			<tr>
+				<td>Canada (YYZ)</td>
+				<td>8</td>
+				<td>$224</td>
+			</tr>
+			<tr>
+				<td>China (HKG)</td>
+				<td>1</td>
+				<td>$1424</td>
+			</tr>
+			<tr>
+				<td>France (CDG)</td>
+				<td>13</td>
+				<td>$541</td>
+			</tr>
+			<tr>
+				<td>France (LYS)</td>
+				<td>4</td>
+				<td>$816</td>
+			</tr>
+			<tr>
+				<td>Germany (DUS)</td>
+				<td>5</td>
+				<td>$905</td>
+			</tr>
+			<tr>
+				<td>Germany (MUC)</td>
+				<td>8</td>
+				<td>$794</td>
+			</tr>
+			<tr>
+				<td>Netherlands (AMS)</td>
+				<td>6</td>
+				<td>$669</td>
+			</tr>
+			<tr>
+				<td>Poland (WAW)</td>
+				<td>2</td>
+				<td>$760</td>
+			</tr>
+			<tr>
+				<td>Sweden (ARN)</td>
+				<td>1</td>
+				<td>$597</td>
+			</tr>
+			<tr>
+				<td>Switzerland (GVA)</td>
+				<td>3</td>
+				<td>$847</td>
+			</tr>
+			<tr>
+				<td>Switzerland (ZRH)</td>
+				<td>5</td>
+				<td>$871</td>
+			</tr>
+			<tr>
+				<td>United Kingdom (DUB)</td>
+				<td>3</td>
+				<td>$573</td>
+			</tr>
+			<tr>
+				<td>United Kingdom (EDI)</td>
+				<td>2</td>
+				<td>$763</td>
+			</tr>
+			<tr>
+				<td>United Kingdom (LHR)</td>
+				<td>3</td>
+				<td>$628</td>
+			</tr>
+			<tr>
+				<td>United States (AUS)</td>
+				<td>3</td>
+				<td>$590</td>
+			</tr>
+			<tr>
+				<td>United States (BOS)</td>
+				<td>2</td>
+				<td>$447</td>
+			</tr>
+			<tr>
+				<td>United States (SFO)</td>
+				<td>6</td>
+				<td>$791</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>	
+</html>
